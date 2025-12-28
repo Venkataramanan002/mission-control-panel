@@ -14,22 +14,29 @@ export const CrisisTile = ({ title, icon, sparklineColor, sparklineData }: Crisi
   
   const points = sparklineData.map((val, i) => {
     const x = (i / (sparklineData.length - 1)) * 100;
-    const y = 30 - ((val - minVal) / range) * 25;
+    const y = 28 - ((val - minVal) / range) * 22;
     return `${x},${y}`;
   }).join(' ');
 
   return (
-    <div className="crisis-tile flex-1 min-w-[150px]">
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-[11px] font-semibold text-foreground tracking-wide leading-tight">
+    <div className="crisis-tile">
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <div className="text-[10px] font-semibold text-foreground tracking-wide leading-tight flex-1">
           {title}
         </div>
-        <div className="text-lg">
+        <div className="flex-shrink-0">
           {icon}
         </div>
       </div>
       <div className="sparkline">
-        <svg viewBox="0 0 100 35" className="w-full h-full" preserveAspectRatio="none">
+        <svg viewBox="0 0 100 32" className="w-full h-full" preserveAspectRatio="none">
+          {/* Area fill */}
+          <polygon
+            points={`0,32 ${points} 100,32`}
+            fill={sparklineColor}
+            opacity="0.15"
+          />
+          {/* Line */}
           <polyline
             points={points}
             fill="none"

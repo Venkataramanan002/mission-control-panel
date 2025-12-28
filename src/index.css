@@ -6,63 +6,80 @@
 
 @layer base {
   :root {
-    --background: 220 20% 8%;
+    --background: 220 25% 6%;
     --foreground: 200 20% 95%;
 
-    --card: 220 15% 12%;
+    --card: 220 20% 10%;
     --card-foreground: 200 20% 95%;
 
-    --popover: 220 15% 12%;
+    --popover: 220 20% 10%;
     --popover-foreground: 200 20% 95%;
 
-    --primary: 185 80% 50%;
-    --primary-foreground: 220 20% 8%;
+    --primary: 180 100% 45%;
+    --primary-foreground: 220 25% 6%;
 
-    --secondary: 220 15% 18%;
+    --secondary: 220 20% 14%;
     --secondary-foreground: 200 20% 90%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 200 10% 55%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 200 10% 50%;
 
     --accent: 35 100% 50%;
-    --accent-foreground: 220 20% 8%;
+    --accent-foreground: 220 25% 6%;
 
-    --destructive: 0 75% 55%;
+    --destructive: 0 80% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 145 70% 45%;
+    --success: 145 70% 42%;
     --success-foreground: 0 0% 100%;
 
     --warning: 35 100% 50%;
-    --warning-foreground: 220 20% 8%;
+    --warning-foreground: 220 25% 6%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 185 80% 50%;
+    --border: 220 20% 18%;
+    --input: 220 20% 14%;
+    --ring: 180 100% 45%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
+
+    /* Spacing grid - 8px base */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-5: 1.25rem;  /* 20px */
+    --space-6: 1.5rem;   /* 24px */
+    --space-8: 2rem;     /* 32px */
+    --space-10: 2.5rem;  /* 40px */
+    --space-12: 3rem;    /* 48px */
 
     /* Custom dashboard colors */
-    --gauge-green: 145 80% 45%;
-    --gauge-yellow: 45 100% 55%;
-    --gauge-orange: 25 100% 55%;
+    --gauge-green: 145 80% 42%;
+    --gauge-yellow: 50 100% 50%;
+    --gauge-orange: 30 100% 50%;
     --gauge-red: 0 80% 55%;
     
-    --glass-bg: 220 20% 10% / 0.7;
-    --glass-border: 200 20% 30% / 0.3;
-    --glass-glow: 185 80% 50% / 0.15;
+    --glass-bg: 220 25% 8%;
+    --glass-border: 200 20% 25%;
+    --glass-glow: 180 100% 45%;
     
-    --card-farmer: 185 60% 25%;
-    --card-women: 200 30% 25%;
-    --card-health: 35 50% 25%;
-    --card-citizen: 220 20% 22%;
+    --map-green: 145 50% 35%;
+    --map-highlight: 0 75% 50%;
+    --map-shadow: 220 30% 4%;
 
-    --map-green: 145 50% 40%;
-    --map-highlight: 0 70% 55%;
+    /* Card variants */
+    --card-farmer-bg: 175 50% 12%;
+    --card-farmer-border: 175 60% 25%;
+    --card-women-bg: 200 35% 12%;
+    --card-women-border: 200 45% 25%;
+    --card-health-bg: 35 40% 12%;
+    --card-health-border: 35 50% 28%;
+    --card-citizen-bg: 220 25% 11%;
+    --card-citizen-border: 220 30% 22%;
   }
 
   .dark {
-    --background: 220 20% 8%;
+    --background: 220 25% 6%;
     --foreground: 200 20% 95%;
   }
 }
@@ -75,6 +92,13 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    background: linear-gradient(
+      180deg,
+      hsl(220 25% 6%) 0%,
+      hsl(220 30% 4%) 50%,
+      hsl(220 25% 7%) 100%
+    );
+    min-height: 100vh;
   }
 
   h1, h2, h3, .font-display {
@@ -84,64 +108,210 @@
 
 @layer components {
   .glass-card {
-    @apply relative rounded-xl border backdrop-blur-md;
+    @apply relative rounded-lg border backdrop-blur-sm;
     background: linear-gradient(
-      135deg,
-      hsl(var(--glass-bg)),
-      hsl(220 20% 8% / 0.9)
+      145deg,
+      hsl(var(--glass-bg) / 0.85),
+      hsl(var(--glass-bg) / 0.95)
     );
-    border-color: hsl(var(--glass-border));
+    border-color: hsl(var(--glass-border) / 0.4);
     box-shadow: 
-      0 0 20px hsl(var(--glass-glow)),
-      inset 0 1px 0 hsl(200 20% 40% / 0.1);
+      0 0 24px hsl(var(--glass-glow) / 0.08),
+      0 4px 12px hsl(220 30% 2% / 0.5),
+      inset 0 1px 0 hsl(200 20% 35% / 0.08);
   }
 
-  .gauge-glow {
-    filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.5));
+  .glass-card-hover {
+    @apply glass-card transition-all duration-200;
+  }
+  
+  .glass-card-hover:hover {
+    border-color: hsl(var(--glass-border) / 0.6);
+    box-shadow: 
+      0 0 32px hsl(var(--glass-glow) / 0.12),
+      0 8px 24px hsl(220 30% 2% / 0.6),
+      inset 0 1px 0 hsl(200 20% 35% / 0.12);
   }
 
   .kpi-card {
-    @apply glass-card p-4 min-w-[180px];
+    @apply glass-card;
+    padding: var(--space-4);
+    min-width: 168px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kpi-card-farmer {
+    background: linear-gradient(145deg, hsl(var(--card-farmer-bg)), hsl(220 25% 8%));
+    border-color: hsl(var(--card-farmer-border) / 0.4);
+  }
+
+  .kpi-card-women {
+    background: linear-gradient(145deg, hsl(var(--card-women-bg)), hsl(220 25% 8%));
+    border-color: hsl(var(--card-women-border) / 0.4);
+  }
+
+  .kpi-card-health {
+    background: linear-gradient(145deg, hsl(var(--card-health-bg)), hsl(220 25% 8%));
+    border-color: hsl(var(--card-health-border) / 0.4);
+  }
+
+  .kpi-card-citizen {
+    background: linear-gradient(145deg, hsl(var(--card-citizen-bg)), hsl(220 25% 8%));
+    border-color: hsl(var(--card-citizen-border) / 0.4);
   }
 
   .crisis-tile {
-    @apply glass-card p-3 flex flex-col gap-2;
+    @apply glass-card;
+    padding: var(--space-3);
     min-width: 160px;
+    flex: 1;
   }
 
   .map-container {
-    @apply glass-card p-4 relative overflow-hidden;
+    @apply glass-card relative overflow-hidden;
+    padding: var(--space-4);
   }
 
   .direct-call-btn {
-    @apply px-6 py-2 rounded-lg font-semibold text-sm tracking-wider;
-    background: linear-gradient(135deg, hsl(35 100% 50%), hsl(25 100% 45%));
+    @apply font-semibold text-xs tracking-wider rounded-md transition-all;
+    padding: var(--space-2) var(--space-4);
+    background: linear-gradient(135deg, hsl(35 100% 50%), hsl(25 100% 42%));
     color: hsl(0 0% 100%);
-    box-shadow: 0 4px 15px hsl(35 100% 50% / 0.4);
+    box-shadow: 0 4px 16px hsl(35 100% 50% / 0.35);
+  }
+
+  .direct-call-btn:hover {
+    box-shadow: 0 6px 20px hsl(35 100% 50% / 0.45);
+    transform: translateY(-1px);
   }
 
   .action-alert {
-    @apply flex items-center gap-2 px-4 py-2 rounded-lg;
-    background: hsl(0 70% 20% / 0.6);
-    border: 1px solid hsl(0 70% 40% / 0.5);
+    @apply flex items-center rounded-lg;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: hsl(0 70% 18% / 0.7);
+    border: 1px solid hsl(0 70% 35% / 0.5);
+  }
+
+  .nav-tab {
+    @apply font-display text-xs tracking-wider transition-all rounded-md;
+    padding: var(--space-2) var(--space-4);
+    color: hsl(var(--muted-foreground));
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .nav-tab:hover {
+    color: hsl(var(--foreground));
+    background: hsl(var(--secondary) / 0.5);
+  }
+
+  .nav-tab-active {
+    color: hsl(var(--primary));
+    background: hsl(var(--secondary));
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.2);
   }
 
   .lang-toggle {
-    @apply flex items-center gap-2 text-xs font-medium;
+    @apply flex items-center text-xs font-medium;
+    gap: var(--space-2);
   }
 
   .sparkline {
-    @apply h-8 w-full;
+    height: 32px;
+    width: 100%;
+  }
+
+  .table-glass {
+    @apply w-full text-sm;
+  }
+
+  .table-glass th {
+    @apply font-display text-xs tracking-wider text-muted-foreground font-medium text-left;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .table-glass td {
+    @apply text-foreground;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .table-glass tr:hover td {
+    background: hsl(var(--secondary) / 0.3);
+  }
+
+  .input-glass {
+    @apply w-full rounded-md text-sm text-foreground placeholder:text-muted-foreground;
+    padding: var(--space-2) var(--space-3);
+    background: hsl(var(--input));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .input-glass:focus {
+    outline: none;
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.15);
+  }
+
+  .btn-primary {
+    @apply font-semibold text-sm rounded-md transition-all;
+    padding: var(--space-2) var(--space-4);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .btn-primary:hover {
+    background: hsl(180 100% 40%);
+  }
+
+  .btn-secondary {
+    @apply font-medium text-sm rounded-md transition-all;
+    padding: var(--space-2) var(--space-3);
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .btn-secondary:hover {
+    background: hsl(var(--muted));
+  }
+
+  .rag-pill {
+    @apply text-xs font-semibold rounded-full;
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .rag-green {
+    background: hsl(var(--success) / 0.2);
+    color: hsl(var(--success));
+    border: 1px solid hsl(var(--success) / 0.4);
+  }
+
+  .rag-yellow {
+    background: hsl(var(--warning) / 0.2);
+    color: hsl(var(--warning));
+    border: 1px solid hsl(var(--warning) / 0.4);
+  }
+
+  .rag-red {
+    background: hsl(var(--destructive) / 0.2);
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.4);
   }
 }
 
 @layer utilities {
   .text-glow-primary {
-    text-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+    text-shadow: 0 0 24px hsl(var(--primary) / 0.5);
   }
 
   .text-glow-accent {
-    text-shadow: 0 0 15px hsl(var(--accent) / 0.6);
+    text-shadow: 0 0 16px hsl(var(--accent) / 0.5);
   }
 
   .animate-pulse-slow {
