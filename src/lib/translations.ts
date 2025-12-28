@@ -3,7 +3,7 @@ export type Language = 'en' | 'hi';
 export const translations = {
   en: {
     // Header
-    title: 'CHHATTISGARH STATE LEADERSHIP COCKPIT',
+    title: 'SMOOTH TEXT CONTROL PANEL',
     
     // Navigation
     screen1: 'Overview',
@@ -102,7 +102,7 @@ export const translations = {
   },
   hi: {
     // Header
-    title: 'छत्तीसगढ़ राज्य नेतृत्व कॉकपिट',
+    title: 'स्मूथ टेक्स्ट नियंत्रण पैनल',
     
     // Navigation
     screen1: 'अवलोकन',
