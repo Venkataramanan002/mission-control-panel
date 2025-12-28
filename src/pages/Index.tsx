@@ -15,7 +15,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-6 lg:p-8 overflow-auto">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8 overflow-auto text-center">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="mb-6">
