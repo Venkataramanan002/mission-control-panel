@@ -42,9 +42,11 @@ const Index = () => {
 
         {/* Screen Content */}
         <main>
-          {activeScreen === 1 && <Screen1 lang={lang} />}
-          {activeScreen === 2 && <Screen2 lang={lang} />}
-          {activeScreen === 3 && <Screen3 lang={lang} />}
+          <div key={activeScreen} className="screen-enter">
+            {activeScreen === 1 && <Screen1 lang={lang} />}
+            {activeScreen === 2 && <Screen2 lang={lang} />}
+            {activeScreen === 3 && <Screen3 lang={lang} />}
+          </div>
         </main>
 
         {/* Footer */}

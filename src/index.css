@@ -92,7 +92,7 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     background: linear-gradient(
       180deg,
       hsl(220 25% 6%) 0%,
@@ -104,7 +104,7 @@
 
   h1, h2, h3, h4, h5, h6, .font-display {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
   }
 }
 
@@ -136,12 +136,21 @@
   }
 
   .kpi-card {
-    @apply glass-card;
+    @apply glass-card transition-all duration-300;
     padding: var(--space-4);
     min-width: 168px;
     height: 140px;
     display: flex;
     flex-direction: column;
+  }
+
+  .kpi-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: hsl(var(--glass-border) / 0.6);
+    box-shadow: 
+      0 0 32px hsl(var(--glass-glow) / 0.15),
+      0 12px 32px hsl(220 30% 2% / 0.6),
+      inset 0 1px 0 hsl(200 20% 35% / 0.12);
   }
 
   .kpi-card-farmer {
@@ -165,10 +174,18 @@
   }
 
   .crisis-tile {
-    @apply glass-card;
+    @apply glass-card transition-all duration-300 cursor-pointer;
     padding: var(--space-3);
     min-width: 160px;
     flex: 1;
+  }
+
+  .crisis-tile:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--glass-border) / 0.6);
+    box-shadow: 
+      0 0 24px hsl(var(--glass-glow) / 0.12),
+      0 8px 24px hsl(220 30% 2% / 0.5);
   }
 
   .map-container {
@@ -318,5 +335,21 @@
 
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Screen transitions */
+  .screen-enter {
+    animation: screenFadeIn 0.4s ease-out forwards;
+  }
+
+  @keyframes screenFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
