@@ -92,7 +92,7 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     background: linear-gradient(
       180deg,
       hsl(220 25% 6%) 0%,
@@ -104,7 +104,8 @@
 
   h1, h2, h3, h4, h5, h6, .font-display {
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
+    text-transform: none;
   }
 }
 
