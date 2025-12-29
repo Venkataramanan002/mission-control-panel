@@ -12,7 +12,7 @@ export const SushasanGauge = ({ value, maxValue, change, lang }: SushasanGaugePr
   
   return (
     <div className="flex flex-col items-center">
-      <div className="relative w-[260px] h-[140px]">
+      <div className="relative w-[300px] h-[160px]">
         <svg viewBox="0 0 200 105" className="w-full h-full">
           <defs>
             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -23,13 +23,6 @@ export const SushasanGauge = ({ value, maxValue, change, lang }: SushasanGaugePr
             </linearGradient>
             <filter id="gaugeGlow">
               <feGaussianBlur stdDeviation="3" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <filter id="needleGlow">
-              <feGaussianBlur stdDeviation="2" result="blur"/>
               <feMerge>
                 <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
@@ -76,23 +69,6 @@ export const SushasanGauge = ({ value, maxValue, change, lang }: SushasanGaugePr
               />
             );
           })}
-          
-          {/* Needle */}
-          <g transform={`rotate(${-90 + (percentage / 100) * 180}, 100, 95)`}>
-            <polygon
-              points="100,25 97,95 103,95"
-              fill="hsl(180, 100%, 45%)"
-              filter="url(#needleGlow)"
-            />
-            <circle 
-              cx="100" 
-              cy="95" 
-              r="8" 
-              fill="hsl(220, 25%, 12%)" 
-              stroke="hsl(180, 100%, 45%)" 
-              strokeWidth="2" 
-            />
-          </g>
         </svg>
         
         {/* Center value display */}
