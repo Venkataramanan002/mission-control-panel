@@ -96,20 +96,20 @@ export const SushasanGauge = ({ value, maxValue, change, lang }: SushasanGaugePr
         </svg>
         
         {/* Center value display */}
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-0">
-          <div className="text-[10px] font-display tracking-[0.15em] text-muted-foreground uppercase mb-1">
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-2">
+          <div className="text-[10px] font-display tracking-[0.2em] text-muted-foreground uppercase text-center">
             {getTranslation(lang, 'sushasanIndex')}
           </div>
-          <div className="flex items-baseline">
-            <span className="text-4xl font-display font-bold text-primary text-glow-primary">
+          <div className="flex items-baseline justify-center mt-1">
+            <span className="text-4xl font-display font-bold text-primary text-glow-primary leading-none">
               {value}
             </span>
-            <span className="text-xl font-display text-muted-foreground mx-0.5">/</span>
-            <span className="text-xl font-display text-muted-foreground">{maxValue}</span>
+            <span className="text-xl font-display text-muted-foreground leading-none">/</span>
+            <span className="text-xl font-display text-muted-foreground leading-none">{maxValue}</span>
           </div>
-          <div className="text-xs flex items-center gap-1.5 mt-1">
-            <span className="text-success font-medium">↑ {change}</span>
-            <span className="text-muted-foreground">{getTranslation(lang, 'lastWeek')}</span>
+          <div className="flex items-center justify-center gap-1 mt-1.5">
+            <span className="text-xs text-success font-medium">↑ {change}</span>
+            <span className="text-xs text-muted-foreground">{getTranslation(lang, 'lastWeek')}</span>
           </div>
         </div>
       </div>
